@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 #include <GL/glu.h>
+#include "Objects/TestObject.h"
 
 int main()
 {
@@ -24,6 +25,9 @@ int main()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(90.f, 1.f, 1.f, 300.0f);//fov, aspect, zNear, zFar
+
+    TestObject myobject = TestObject();
+    myobject.loadObjectFromPath("/home/vebis/CLionProjects/3dproject/teddy.txt");
 
 
     // load resources, initialize the OpenGL states, ...
@@ -55,6 +59,8 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // draw...
+
+        //myobject.drawMe();
 
         // Apply some transformations for the cube
         glMatrixMode(GL_MODELVIEW);
