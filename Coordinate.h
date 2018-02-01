@@ -15,11 +15,18 @@ public:
     void SetY(float y) { this->y = y; }
     void SetZ(float z) { this->z = z; }
 
+    void NormalSetX(float x) { this->nX = x; }
+    void NormalSetY(float y) { this->nY = y; }
+    void NormalSetZ(float z) { this->nZ = z; }
+
     void SetValues(float value);
 
     float GetX();
     float GetY();
     float GetZ();
+    float NormalGetX();
+    float NormalGetY();
+    float NormalGetZ();
     int GetCount(){return count;}
 
 private:
@@ -27,6 +34,9 @@ private:
     float x;
     float y;
     float z;
+    float nX;
+    float nY;
+    float nZ;
 
 };
 
