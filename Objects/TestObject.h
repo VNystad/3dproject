@@ -15,14 +15,42 @@ class TestObject : public CollidableObject
 public:
     TestObject() = default;
 
-    void loadObjectFromPath(std::string path);
+    bool loadOBJ(const char * path);
     void drawMe();
-    double GetGravity() { return gravity; };
+
+    void SetKeyAPressed(bool pressed) { this->KeyAPressed = pressed; }
+    void SetKeyDPressed(bool pressed) { this->KeyDPressed = pressed; }
+    void SetKeyWPressed(bool pressed) { this->KeyWPressed = pressed; }
+    void SetKeySPressed(bool pressed) { this->KeySPressed = pressed; }
+
+    void ChangeAngleFromMouseMovement(float angle) { this->Angle +=angle; }
+
+    /*
+    bool GetKeyAPressed(){ return KeyAPressed; }
+    bool GetKeyDPressed(){ return KeyDPressed; }
+    bool GetKeyWPressed(){ return KeyWPressed; }
+    bool GetKeySPressed(){ return KeySPressed; }
+    */
+
+    double GetGravity() { return Gravity; };
 
 private:
-    std::vector<Coordinate> Faces;
-    double gravity = 1;
-    double angle = 0.3;
+    float Angle;
+
+    bool KeyAPressed = false;
+    float XMovement = 0;
+    bool KeyDPressed = false;
+
+    bool KeyWPressed = false;
+    float ZMovement = 0;
+    bool KeySPressed = false;
+
+    double Gravity = 1;
+
+    std::vector< unsigned int > vertexIndices, uvIndices, normalIndices;
+    std::vector<Coordinate> UVs;
+    std::vector<Coordinate> Normals;
+    std::vector<Coordinate> Vertices;
 };
 
 
