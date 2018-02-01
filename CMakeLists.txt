@@ -9,7 +9,7 @@ set(SOURCE_FILES
         main.cpp
         Objects/CollidableObject.cpp Objects/CollidableObject.h
         Objects/TestObject.cpp Objects/TestObject.h
-        Coordinate.cpp Coordinate.h)
+        Coordinate.cpp Coordinate.h Objects/EventHandler.cpp Objects/EventHandler.h)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 

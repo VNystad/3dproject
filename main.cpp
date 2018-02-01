@@ -2,6 +2,7 @@
 #include <SFML/OpenGL.hpp>
 #include <GL/glu.h>
 #include "Objects/TestObject.h"
+#include "Objects/EventHandler.h"
 
 int main()
 {
@@ -26,33 +27,26 @@ int main()
     glLoadIdentity();
     gluPerspective(90.f, 1.f, 1.f, 300.0f);//fov, aspect, zNear, zFar
 
-    TestObject myobject = TestObject();
-    myobject.loadObjectFromPath("/home/vebis/CLionProjects/3dproject/teddy.txt");
+    TestObject* myobject = new TestObject();
+    //myobject->loadObjectFromPath("teddy.txt");
+    myobject->loadOBJ("Models/untitled.obj");
 
 
     // load resources, initialize the OpenGL states, ...
 
     bool rotate=true;
-    float angle;
+    //myobject->angle = clock.getElapsedTime().asSeconds();
 
     // run the main loop
     bool running = true;
+    EventHandler* eventHandler = new EventHandler();
     while (running)
     {
         // handle events
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-            {
-                // end the program
-                running = false;
-            }
-            else if (event.type == sf::Event::Resized)
-            {
-                // adjust the viewport when the window is resized
-                glViewport(0, 0, event.size.width, event.size.height);
-            }
+            eventHandler->HandleEvent(event, running, myobject);
         }
 
         // clear the buffers
@@ -60,10 +54,13 @@ int main()
 
         // draw...
 
-        //myobject.drawMe();
+        myobject->drawMe();
+        /*if(rotate){
+            myobject->angle = clock.getElapsedTime().asSeconds();
+        }*/
 
         // Apply some transformations for the cube
-        glMatrixMode(GL_MODELVIEW);
+        /*glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glTranslatef(0.f, 0.f, -200.f);
 
@@ -112,7 +109,7 @@ int main()
         glVertex3f( 50.f, 50.f, -50.f);
         glVertex3f( 50.f, 50.f,  50.f);
 
-        glEnd();
+        glEnd();*/
 
 
         // end the current frame (internally swaps the front and back buffers)

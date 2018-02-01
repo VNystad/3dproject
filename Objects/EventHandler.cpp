@@ -11,7 +11,7 @@ void EventHandler::HandleEvent(sf::Event event, bool &running, TestObject *testO
 
     if (event.type == sf::Event::MouseMoved)
     {
-        
+
     }
     else if (event.type == sf::Event::KeyPressed)
     {
